@@ -24,10 +24,10 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("get-canvas-state");
   });
 
-  // socket.on("canvas-state", (state) => {
-  //   console.log("received canvas state");
-  //   socket.broadcast.emit("canvas-state-from-server", state);
-  // });
+  socket.on("canvas-state", (state) => {
+    console.log("received canvas state");
+    socket.broadcast.emit("canvas-state-from-server", state);
+  });
 
   socket.on("draw-line", ({ prevPoint, currentPoint, color }: DrawLine) => {
     socket.broadcast.emit("draw-line", { prevPoint, currentPoint, color });
